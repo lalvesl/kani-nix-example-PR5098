@@ -1,0 +1,10 @@
+[package]
+name = "kani-nix-example"
+version = "0.1.0"
+edition = "2021"
+
+[dependencies]
+
+[lints.rust]
+# `cfg(kani)` is set by Kani; tell rustc it is expected.
+unexpected_cfgs = { level = "warn", check-cfg = ["cfg(kani)"] }
