@@ -1,5 +1,9 @@
 # kani-nix-example
 
+> This repository is a companion to
+> [model-checking/kani#5098](https://github.com/model-checking/kani/pull/5098), which adds a Nix
+> flake to Kani. It shows that flake in use, and its CI runs it on Linux and macOS.
+
 [![Kani](https://github.com/lalvesl/kani-nix-example/actions/workflows/kani.yml/badge.svg)](https://github.com/lalvesl/kani-nix-example/actions/workflows/kani.yml)
 
 A small Rust crate verified with [Kani](https://github.com/model-checking/kani), using Kani's
