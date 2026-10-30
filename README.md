@@ -1,5 +1,7 @@
 # kani-nix-example
 
+[![Kani](https://github.com/lalvesl/kani-nix-example/actions/workflows/kani.yml/badge.svg)](https://github.com/lalvesl/kani-nix-example/actions/workflows/kani.yml)
+
 A small Rust crate verified with [Kani](https://github.com/model-checking/kani), using Kani's
 Nix flake to select the Kani version per development shell. There is no rustup, no
 `cargo install kani-verifier`, and no `cargo kani setup`.
@@ -25,6 +27,9 @@ Complete - 3 successfully verified harnesses, 0 failures, 3 total.
 ```
 
 `cargo kani --version` shows which Kani each shell provides.
+
+CI (`.github/workflows/kani.yml`) runs `cargo kani` in both shells on x86_64 Linux, aarch64
+Linux and aarch64 macOS, on every push and pull request.
 
 Shell names use `_` instead of `.` (`kani-0_67`), because Nix reads a `.` in `.#kani-0.67` as
 an attribute path separator.

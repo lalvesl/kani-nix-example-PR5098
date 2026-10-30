@@ -1,0 +1,36 @@
+name: Kani
+
+on:
+  push:
+  pull_request:
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+jobs:
+  verify:
+    name: ${{ matrix.shell }} on ${{ matrix.os }}
+    runs-on: ${{ matrix.os }}
+    strategy:
+      fail-fast: false
+      matrix:
+        os:
+          - ubuntu-24.04 # x86_64-linux
+          - ubuntu-24.04-arm # aarch64-linux
+          - macos-15 # aarch64-darwin
+        shell:
+          - kani-latest
+          - kani-0_67
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v6
+
+      - name: Install Nix
+        uses: cachix/install-nix-action@v31
+
+      - name: Show the shell's Kani
+        run: nix develop ".#${{ matrix.shell }}" --command cargo kani --version
+
+      - name: Verify with Kani
+        run: nix develop ".#${{ matrix.shell }}" --command cargo kani
